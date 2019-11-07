@@ -1,0 +1,11 @@
+<nav>
+  {% for link in site.data.navigation %}
+    <a 
+      href="{{ link.url | prepend: site.baseurl }}" 
+      {% if page.url == link.url %}
+        style="color: red;"
+      {% endif %}>
+      {{ link.label }}
+    </a>
+  {% endfor %}
+</nav>

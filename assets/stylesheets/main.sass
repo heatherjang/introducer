@@ -2,3 +2,29 @@
 ---
 @import 'reset'
 @import 'mixins'
+@import 'typography'
+
+// == Base Styles ==========
+.flex
+  -ms-display: flex
+  -webkit-display: flex
+  display: -webkit-box
+  display: -moz-box
+  display: -ms-flexbox
+  display: -webkit-flex
+  display: flex
+
+.theme-1
+  background-color: $theme-color-1
+.theme-2
+  background-color: $theme-color-2
+.theme-3
+  background-color: $theme-color-3
+.theme-4
+  background-color: $theme-color-4
+
+// == Navigation ============
+nav
+  li
+    display: inline-block
+    margin-right: 30px

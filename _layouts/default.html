@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
+    <link 
+      href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,600,700,900&display=swap" 
+      rel="stylesheet">
     <link
       rel="stylesheet" 
       type="text/css"
       href="{{ '/assets/stylesheets/main.css' | prepend: site.baseurl }}">
   </head>
   <body>
-    {% include navigation.html %}
-    <div class="testing">HO</div>
-    <div class="test">HII</div>
     {{ content }}
   </body>
 </html>

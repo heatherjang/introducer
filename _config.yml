@@ -1,15 +1,10 @@
 # == Setup ====================
 baseurl: /introducer
 sass:
-    sass_dir: _sass
+  sass_dir: _sass
     
 # == Front Matter defaults ====
 defaults:
-  - scope:
-      path: ""
-      type: "authors"
-    values:
-      layout: "author"
   - scope:
       path: ""
       type: "posts"
@@ -29,6 +24,4 @@ defaults:
 include: ['_pages']
 
 # == Collections ==============
-collections:
-  authors:
-    output: true
+# collections:

@@ -3,13 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
+    <!-- Font -->
     <link 
-      href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,600,700,900&display=swap" 
+      href="https://fonts.googleapis.com/css?family=Quicksand:100,300,500,600,700,900&display=swap" 
       rel="stylesheet">
+    <!-- Stylesheet -->
     <link
       rel="stylesheet" 
       type="text/css"
       href="{{ '/assets/stylesheets/main.css' | prepend: site.baseurl }}">
+    <!-- Jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+      crossorigin="anonymous"></script>
   </head>
   <body>
     {{ content }}

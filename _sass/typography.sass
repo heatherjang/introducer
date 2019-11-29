@@ -1,18 +1,26 @@
-body, div, h1, h2, h3, h4, h5, p, span, a
+// == Base styles only for extension =====
+.anchor-base
+  +transition(all 0.2s ease)
+  &:hover
+    cursor: pointer
+    opacity: 0.7
+    
+// == Typography Base ====================
+body, div, h1, h2, h3, h4, h5, p, span, a, button
   font-family: $main-font-family
   color: $font-color
-
+body, div, p, span, a, button
+  font-weight: 300
 h1
   font-size: 2.6em
   line-height: 1.3em
+h3
+  font-weight: 400
 p
-  line-height: 1.6em
-  font-weight: 300
+  line-height: 1.65em
 a
-  +transition(all 0.2s ease)
+  @extend .anchor-base
   text-decoration: none
-  &:hover
-    opacity: 0.7
 
 .txt-upcase
   text-transform: uppercase

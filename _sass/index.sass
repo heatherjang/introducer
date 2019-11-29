@@ -1,0 +1,130 @@
+//== Vars ==========
+$sidebar-width: 40%
+
+// == Sidebar ======
+.sidebar-container
+  position: fixed
+  z-index: 9
+  +box-sizing(border-box)
+  top: 0
+  left: 0
+  width: $sidebar-width
+  height: 100%
+  padding: 30px 70px 140px 70px
+.sidebar-content
+  @extend .flex
+  +flex-direction(column)
+  +align-content(flex-end)
+  height: 100%
+  width: 100%
+  div
+    +flex-grow(1)
+  h1
+    font-weight: 300
+    margin-bottom: 24px
+  p
+    margin-bottom: 60px
+
+// == Content ======
+.content-container
+  @extend .flex
+  margin-left: $sidebar-width 
+  +flex-direction(column)
+.content-panel
+  @extend .flex
+  background-color: $theme-color-1
+  +calc('height', "100vh - 10px")
+  min-height: 675px
+  width: 100%
+  position: relative
+  +box-sizing(border-box)
+  button
+    float: right
+.project-panel
+  +flex-direction(column)
+  padding: 50px 0
+  align-items: flex-end
+  &> div
+    min-height: 30%
+    width: 80%
+    align-self: center
+    padding: 40px 0 0 0
+    +box-sizing(border-box)
+.project-image
+  margin: auto auto 0 auto
+  height: auto
+  width: auto
+  max-width: 80%
+.project-txt
+  text-align: center
+  color: #fff
+.project-head
+  text-transform: uppercase
+  font-size: 1em
+  margin-bottom: 3px
+.project-subhead
+  font-size: 0.8em
+  padding-bottom: 15px
+.project-details
+  padding: 15px 0 8px 0
+  min-height: 100px
+  max-width: 440px
+  margin: 0 auto
+  position: relative
+  li
+    color: #fff
+    font-size: 0.8em
+    line-height: 1.5em
+  li:first-child
+    font-size: 0.6em
+    text-transform: uppercase
+    font-weight: 400
+  div
+    width: 100%
+    position: absolute
+    top: 0
+    left: 0
+    +transition(all 0.3s ease)
+    p:first-child
+      margin-bottom: 7px
+    &:first-child
+      @extend .flex
+      justify-content: space-between
+      &.inactive
+        left: -200%
+    &:last-child
+      &.inactive
+        left: 200%
+    p
+      font-size: 0.9em
+      color: #fff
+.btns-wrapper
+  text-align: right
+  position: relative
+  height: 14px
+  button
+    position: absolute
+    bottom: 0
+    right: 0
+    +transition(all 0.4s ease)
+  .inactive
+    z-index: -1
+    +transform(rotateY(180deg))
+// -- Panel 1 -------
+#index_panel_1
+  +flex-direction(row-reverse)
+  img
+    height: 90%
+    width: auto
+    +align-self(flex-end)
+#index_panel_3
+  img
+    max-width: 65%
+#index_panel_4
+  // padding-bottom: 100px
+  img:first-child
+    width: 61%
+  img:last-child
+    width: 36.25%
+
+

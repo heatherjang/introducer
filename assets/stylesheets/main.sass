@@ -33,6 +33,10 @@ nav
       margin: 0
 
 // == Buttons ===============
+button
+  // +transition(all 0.3s ease)
+  &:focus
+    outline: none
 .btn-anchor
   @extend .anchor-base
   background-color: transparent
@@ -42,3 +46,29 @@ nav
   &.btn-white
     font-weight: 400
     color: #fff
+
+// == Animations ============
+.animatable
+  opacity: 0
+.animate-slide-left
+  transform: translateX(100px)
+  animation: slide-left 0.6s ease forwards
+
+.animate-slide-right
+  transform: translateX(-100px)
+  animation: slide-left 0.8s ease forwards
+
+@keyframes slide-left
+  to
+    transform: translateX(0)
+    opacity: 1
+
+@keyframes slide-right
+  to
+    transform: translateX(0)
+    opacity: 1
+
+
+
+
+

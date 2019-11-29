@@ -12,13 +12,20 @@
       rel="stylesheet" 
       type="text/css"
       href="{{ '/assets/stylesheets/main.css' | prepend: site.baseurl }}">
+  </head>
+
+  <body>
+    {{ content }}
+    
     <!-- Jquery -->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
       crossorigin="anonymous"></script>
-  </head>
-  <body>
-    {{ content }}
+    <!-- Animate elements into viewport -->
+    <script
+      type="text/javascript"
+      src="{{ '/assets/scripts/animate_into_viewport.js' | prepend: site.baseurl }}"></script>
   </body>
+
 </html>

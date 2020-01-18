@@ -6,6 +6,10 @@
 @import 'index'
 
 // == Base Styles ==========
+html
+  scroll-behavior: smooth
+  min-width: 280px
+
 .flex
   -ms-display: flex
   -webkit-display: flex
@@ -24,13 +28,21 @@
 .theme-4
   background-color: $theme-color-4
 
+.invisible
+  opacity: 0
+
 // == Navigation ============
 nav
+  ul
+    @extend .flex
+    justify-content: space-between
   li
     display: inline-block
-    margin-right: 30px
+    // margin-right: 30px
     &:last-child
       margin: 0
+  a.active
+    font-weight: bold
 
 // == Buttons ===============
 button
@@ -67,8 +79,5 @@ button
   to
     transform: translateX(0)
     opacity: 1
-
-
-
 
 

@@ -1,4 +1,4 @@
-(function($) {
+// == Visibility Plugin ======================
   /**
    * Copyright 2012, Digital Fusion
    * Licensed under the MIT license.
@@ -9,8 +9,9 @@
    *     the user visible viewport of a web browser.
    *     only accounts for vertical position, not horizontal.
    */
+(function($) {
   $.fn.visible = function(partial) {
-    var $t            = $(this),
+    let $t            = $(this),
         $w            = $(window),
         viewTop       = $w.scrollTop(),
         viewBottom    = viewTop + $w.height(),
@@ -22,29 +23,27 @@
   };
 })(jQuery);
 
-// == Animate elements into viewport =======
-let $win = $(window);
-let $animatableEls = $(".animatable");
-
-function animateAnimatables(){
-  $animatableEls.each( (i, el) => {
-    let $el = $(el);
-    let animation = $(el).data('animation')
-    let animationClass = `animate-${ animation } animation-complete`
-    if ( !$el.hasClass('animation-complete') && $el.visible(true) ){
-      $el.addClass(animationClass)
+// == Animate elements into viewport ==========
+function Animator({ selector }) {
+  // Select & store elements
+  this.animatableEls = $(`${ selector }`)
+  // Apply animation when visible in viewport
+  this.animateElementsIn = function(){
+    if (this.animatableEls.length > 0){
+      this.animatableEls.each( (i, el) => {
+        let $el = $(el)
+        let animation = $(el).data('animation')
+        let animationClasses = `animate-${ animation } animation-complete`
+        if ( !$el.hasClass('animation-complete') && $el.visible(true) && animation != undefined ){
+          $el.addClass(animationClasses)
+        }
+        else {
+          return
+        }
+      })
     }
     else {
       return
     }
-  });
+  }
 }
-// On load, animate any visible elements
-$win.on("load", () => {
-  animateAnimatables()
-})
-
-// On scroll, animate any visible elements
-$win.scroll( () => {
-  animateAnimatables()
-});

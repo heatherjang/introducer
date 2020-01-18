@@ -14,7 +14,7 @@ vdl_url: https://vdldodgeball.ca/
       Hi,
       <br>
       I'm 
-      <span class="txt-upcase txt-themes">
+      <span class="txt-upcase txt-theme">
         <strong>Heather</strong>
       </span>
     </h1>
@@ -35,16 +35,25 @@ vdl_url: https://vdldodgeball.ca/
         target="_blank">
         Vancouver Dodgeball League
       </a>.
-      Keep scrolling to checkout recent projects and get to know me.
+      <span id="sidebar_instructions">
+        Keep scrolling to check out my projects.</span>
     </p>
     <nav
       class="animatable"
       data-animation="slide-right">
       <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="">Projects</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="">Blog</a></li>
+        <li>
+          <a href="#home" id="home_nav_link" class="active">Home</a>
+        </li>
+        <li>
+          <a href="#projects" id="projects_nav_link">Projects</a>
+        </li>
+<!--         <li>
+          <a href="" id="about_nav_link">About</a>
+        </li>
+        <li>
+          <a href="" id="blog_nav_link">Blog</a>
+        </li> -->
       </ul>
     </nav>
   </div>
@@ -52,21 +61,49 @@ vdl_url: https://vdldodgeball.ca/
 
 <div class="content-container">
   <div
-    id="index_panel_1"
-    class="content-panel theme-1">
+    id="home"
+    class="content-panel theme-1 index-panel-1">
     <img
       src="{{ '/assets/images/portrait.png' | prepend: site.baseurl }}"
-      class="animatable"
-      data-animation="slide-left">
+      class="animatable nav-section-flag"
+      data-animation="slide-left"
+      data-nav-section="home"
+      data-theme-color="1">
   </div>
-
-  <div
-    id="index_panel_2"
-    class="content-panel project-panel theme-2">
+  <!-- <div
+    id="projects"
+    class="content-panel project-panel theme-2 index-panel-2">
+    <h3
+      class="project-txt project-head animatable"
+      data-animation="slide-left">
+      Wabisabi Learning Inc</h3>
+    <p
+      class="project-txt project-subhead animatable"
+      data-animation="slide-left">
+      Wabisabi Web App</p>
     <img
       src="{{ '/assets/images/wabisabi-devices.png' | prepend: site.baseurl }}"
-      class="project-image animatable"
-      data-animation="slide-left">
+      class="project-image animatable nav-section-flag"
+      data-animation="slide-left"
+      data-nav-section="projects"
+      data-theme-color="2">
+    <div class="btns-wrappers">
+      <button>Details</button>
+    </div>
+  </div> -->
+  <div
+    id="projects"
+    class="content-panel project-panel theme-2 index-panel-2">
+    <h3
+      class="project-txt project-head animatable">
+      Wabisabi Learning Inc
+    </h3>
+    <img
+      src="{{ '/assets/images/wabisabi-devices.png' | prepend: site.baseurl }}"
+      class="project-image animatable nav-section-flag"
+      data-animation="slide-left"
+      data-nav-section="projects"
+      data-theme-color="2">
     <div>
       <h3
         class="project-txt project-head animatable"
@@ -131,12 +168,13 @@ vdl_url: https://vdldodgeball.ca/
   </div>
 
   <div
-    id="index_panel_3"
-    class="content-panel project-panel theme-3">
+    class="content-panel project-panel theme-3 index-panel-3">
     <img
       src="{{ '/assets/images/sfap.png' | prepend: site.baseurl }}"
-      class="project-image animatable"
-      data-animation="slide-left">
+      class="project-image animatable nav-section-flag"
+      data-animation="slide-left"
+      data-nav-section="projects"
+      data-theme-color="3">
     <div>
       <h3 
         class="project-txt project-head animatable"
@@ -199,17 +237,19 @@ vdl_url: https://vdldodgeball.ca/
   </div>
 
   <div
-    id="index_panel_4"
-    class="content-panel project-panel theme-4">
+    class="content-panel project-panel theme-4 index-panel-4">
     <div
-      class="project-image animatable"
-      data-animation="slide-left">
+      class="project-image animatable nav-section-flag"
+      data-animation="slide-left"
+      data-nav-section="projects"
+      data-theme-color="4">
       <img
         src="{{ '/assets/images/vdl_hootie_card-1.png' | prepend: site.baseurl }}">
       <img
         src="{{ '/assets/images/vdl_hootie_card-2.png' | prepend: site.baseurl }}">
     </div>
-    <div>
+    <div
+      class="alternate-instructions-flag">
       <h3
         class="project-txt project-head animatable"
         data-animation="slide-left">
@@ -256,11 +296,82 @@ vdl_url: https://vdldodgeball.ca/
 
 
 <script type="text/javascript">
+  //== Constants ==================
+  const ANIMATION_DELAY            = 500
+  // const DEFAULT_TEXT               = "Keep scrolling to find out more."
+  const DEFAULT_TEXT               = "Keep scrolling to checkout my projects."
+  const ALTERNATE_TEXT             = "Scroll back up to see everything you just saw, in reverse."
+  const $win                       = $(window)
+  const $sidebarInstructions       = $('#sidebar_instructions')
+  const $alternateInstructionsFlag = $(".alternate-instructions-flag")
+  const $navSectionFlags           = $('.nav-section-flag')
+  const animator = new Animator({
+    selector: ".animatable"
+  })
+
+  //== Vars =======================
+  let activeNavSection = "home"
+
+  //== Functions ==================
   // Callback for button click to toggle between details and stack
   function togglePanelDetails(btn){
     let $els = $(btn).closest('.project-panel').find('.toggle-flag')
     $els.toggleClass('inactive')
   }
+
+  // If we are at the last panel, show a different message in the sidebar
+  function loadSidebarText(){
+    let loadAlternateText = $alternateInstructionsFlag.visible(true) && !$sidebarInstructions.hasClass('show-alternate-text')
+    let loadDefaultText = !$alternateInstructionsFlag.visible(true) && $sidebarInstructions.hasClass('show-alternate-text')
+    // add/remove show-alternate-text class and swap text
+    if (loadAlternateText || loadDefaultText ){
+      let newText = loadAlternateText ? ALTERNATE_TEXT : DEFAULT_TEXT
+      // Fade out text
+      $sidebarInstructions
+        .addClass('invisible')
+        .toggleClass('show-alternate-text')
+      // Change text and fade back in
+      setTimeout( () => {
+        $sidebarInstructions
+          .text(newText)
+          .removeClass('invisible')
+      }, ANIMATION_DELAY)
+
+    }
+    else {
+      return
+    }
+  }
+
+  // Set 'activeNavSection' and highlight active nav link
+  function setActiveLink(){
+    $navSectionFlags.each( (i, el) => {
+      let section = $(el).data('nav-section')
+      if (
+        $(el).visible(true) &&
+         section != undefined &&
+         section != activeNavSection){
+        // Set activeNavSection = section
+        activeNavSection = section
+        // Remove styling from navLinks
+        $('nav').find('a').removeClass('active')
+        // Make current section active
+        $(`#${ section }_nav_link`).addClass('active')
+      }
+    })
+
+  }
+
+  // == Animate elements into view ===
+  // On window load, resize or scroll:
+  //  animate any elements into viewport,
+  //  update sidebar text,
+  //  and update active nav link
+  $win.on("load resize scroll", () => {
+    animator.animateElementsIn()
+    loadSidebarText()
+    setActiveLink()
+  })
 
 </script>
 

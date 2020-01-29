@@ -168,8 +168,21 @@ $sidebar-width: 40%
     padding: 50px
   .content-panel
     min-height: unset
-  // .project-panel > div
-    // width: 85%
+  .project-details > div:first-child
+    display: block !important
+    ul
+      margin-bottom: 12px
+    li
+      display: inline-block
+      &:first-child
+        display: block
+      &:first-child:after
+        content: ""
+      &:last-child:after
+        content: ""
+      &:after
+        content: "•"
+        padding: 0 0 0 5px
   .project-image
     margin-top: 20%
     width: 100%

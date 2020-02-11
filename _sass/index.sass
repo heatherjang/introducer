@@ -17,9 +17,8 @@ $sidebar-width: 40%
   +align-content(flex-end)
   height: 100%
   width: 100%
-  nav
-    // max-width: 350px
-    max-width: 150px
+  ul
+    max-width: 175px
   div
     height: 40%
   h1
@@ -154,7 +153,13 @@ $sidebar-width: 40%
   .sidebar-container
     position: relative
     width: auto
-    padding: 80px 70px 90px 70px
+    // padding: 80px 70px 90px 70px
+    padding: 80px 0 90px 0
+    h1, p
+      padding-left: 70px
+      padding-right: 70px
+    nav
+      padding: 15px 70px
   .content-container
     margin: 0
   .index-panel-1 
@@ -165,7 +170,13 @@ $sidebar-width: 40%
 
 @media screen and (max-width: 449px)
   .sidebar-container
-    padding: 50px
+    // padding: 50px
+    padding: 50px 0
+    h1, p
+      padding-left: 50px
+      padding-right: 50px
+    nav
+      padding: 10px 50px
   .content-panel
     min-height: unset
   .project-details > div:first-child

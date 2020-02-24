@@ -2,31 +2,47 @@
 $sidebar-width: 40%
 
 // == Sidebar ======
-.sidebar-container
-  position: fixed
-  z-index: 9
-  +box-sizing(border-box)
-  top: 0
-  left: 0
-  width: $sidebar-width
-  height: 100%
-  padding: 0 70px
-.sidebar-content
-  @extend .flex
-  +flex-direction(column)
-  +align-content(flex-end)
-  height: 100%
-  width: 100%
-  ul
-    max-width: 175px
-  div
-    height: 40%
-  h1
+.sidebar
+  &__container
+    +box-sizing
+    position: fixed
+    z-index: 9
+    top: 0
+    left: 0
+    width: $sidebar-width
+    height: 100%
+    padding: 0 70px
+  &__content
+    +display-flex
+    +flex-direction(column)
+    +align-content(flex-end)
+    height: 100%
+    width: 100%
+  &__greeting
     font-weight: 300
     margin-bottom: 24px
-  p
-    margin-bottom: 60px
+    span, strong
+      font-size: inherit
+  &__description
     min-height: 130px
+    &-link
+      font-weight: 700
+      font-size: 18px
+      color: $theme-color-1
+  &__social
+    &-links
+      height: auto
+      padding: 30px 0 0 0
+    &-link
+      color: rgba(black, 0.2)
+      font-size: 25px
+      margin-right: 20px
+  &__spacer
+    height: 40%
+  // ul
+  //   max-width: 175px
+
+
 
 // == Content ======
 .content-container
@@ -149,13 +165,14 @@ $sidebar-width: 40%
     width: 36.25%
 
 // == Media Queries ==========
-@media screen and (max-width: 986px)
-  .sidebar-container
-    position: relative
-    width: auto
-    // padding: 80px 70px 90px 70px
-    padding: 80px 0 90px 0
-    h1, p
+// @media screen and (max-width: 986px)
+@media screen and (max-width: 1145px)
+  .sidebar
+    &__container
+      position: relative
+      width: auto
+      padding: 80px 0 90px 0
+    &__greeting, &__description, &__social-links
       padding-left: 70px
       padding-right: 70px
     nav
@@ -169,14 +186,14 @@ $sidebar-width: 40%
       max-height: 100%
 
 @media screen and (max-width: 449px)
-  .sidebar-container
-    // padding: 50px
-    padding: 50px 0
-    h1, p
+  .sidebar
+    &__container
+      padding: 50px 0
+    &__greeting, &__description, &__social-links
       padding-left: 50px
       padding-right: 50px
-    nav
-      padding: 10px 50px
+    // nav
+    //   padding: 10px 50px
   .content-panel
     min-height: unset
   .project-details > div:first-child

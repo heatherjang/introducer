@@ -6,11 +6,13 @@ $theme-color-1: #FFC571
 $theme-color-2: #A26EDA
 $theme-color-3: #24B5C7
 $theme-color-4: #F79E59
+$brand-color:   #00C7C7
 
 $font-color: #1f2940
 
 // == Fonts ==============
-$main-font-family: 'Quicksand', 'Arial', sans-serif
+$main-font-family: 'Nunito Sans', 'Arial', sans-serif
+// $main-font-family: 'Quicksand', 'Arial', sans-serif
 
 // == Misc ===============
 $default-transition: all 0.2s ease
@@ -24,10 +26,10 @@ $default-transition: all 0.2s ease
   -webkit-align-self: $alignment
   align-self: $alignment
 
-=box-sizing($val)
-  -webkit-box-sizing: $val
-  -moz-box-sizing: $val
-  box-sizing: $val
+=box-sizing($expression: border-box)
+  -webkit-box-sizing: $expression
+  -moz-box-sizing: $expression
+  box-sizing: $expression
 
 =calc($property, $expression)
   #{$property}: -o-calc(#{$expression})
@@ -35,19 +37,28 @@ $default-transition: all 0.2s ease
   #{$property}: -webkit-calc(#{$expression})
   #{$property}: calc(#{$expression})
 
+=display-flex
+  -ms-display: flex
+  -webkit-display: flex
+  display: -webkit-box
+  display: -moz-box
+  display: -ms-flexbox
+  display: -webkit-flex
+  display: flex
+
 =flex-direction($direction)
   -webkit-flex-direction: $direction
   -moz-flex-direction: $direction
   flex-direction: $direction
 
-=flex-grow($val)
-  -ms-flex-positive: $val
-  -webkit-flex-grow: $val
-  flex-grow: $val
+=flex-grow($expression)
+  -ms-flex-positive: $expression
+  -webkit-flex-grow: $expression
+  flex-grow: $expression
 
-=justify-content($val)
-  -webkit-justify-content: $val
-  justify-content: $val
+=justify-content($expression)
+  -webkit-justify-content: $expression
+  justify-content: $expression
 
 =transform($transformation)
   -ms-transform: $transformation

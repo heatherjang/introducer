@@ -28,7 +28,7 @@ $sidebar-width: 40%
     &-link
       font-weight: 700
       font-size: 18px
-      color: $theme-color-1
+      color: $theme-color-0
   &__social
     &-links
       height: auto
@@ -39,9 +39,6 @@ $sidebar-width: 40%
       margin-right: 20px
   &__spacer
     height: 40%
-  // ul
-  //   max-width: 175px
-
 
 
 // == Content ======
@@ -51,12 +48,105 @@ $sidebar-width: 40%
   +flex-direction(column)
 .content-panel
   @extend .flex
-  background-color: $theme-color-1
+  background-color: $theme-color-0
   +calc('height', "100vh - 10px")
   min-height: 675px
   width: 100%
   position: relative
   +box-sizing(border-box)
+
+// == Project ======
+.project
+  +flex-direction(column)
+  overflow: hidden
+  padding: 50px
+  &--theme-1
+    background-color: $theme-color-1
+  &--theme-2
+    background-color: $theme-color-2
+  &__text
+    color: #fff
+    &--title
+      font-size: 13px
+      font-weight: bold
+      margin-bottom: 3px
+      text-transform: uppercase
+    &--subtitle
+      font-size: 13px
+  // Put the real image inside the backgroundImage
+  // with opacity 0 so users can download if they
+  // want
+  &__image
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    opacity: 0
+    &-container
+      +flex-grow(1)
+      background-repeat: no-repeat
+      background-size: contain
+      background-position: center center
+      position: relative
+      margin-bottom: 20px
+
+  &__details
+    border-top: 1px solid rgba(#fff, 0.6)
+    min-height: 108px
+    padding: 15px 0 8px 0
+    position: relative
+    width: 100%
+    &-section
+      margin: auto
+      width: 100%
+      max-width: 500px
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+      padding-top: 20px
+      +transition(all 0.3s ease)
+      p:first-child
+        margin-bottom: 7px
+      &:first-child
+        @extend .flex
+        justify-content: space-between
+        &.inactive
+          left: -300%
+      &:last-child
+        &.inactive
+          left: -300%
+    li
+      color: #fff
+      font-size: 0.8em
+      line-height: 1.5em
+    li:first-child
+      font-size: 0.6em
+      text-transform: uppercase
+      font-weight: 400
+    p
+      font-size: 0.9em
+      color: inherit
+
+    &-section
+      display: block !important
+    ul
+      margin-bottom: 12px
+      display: block
+    li
+      display: inline-block
+      &:first-child
+        display: block
+      &:first-child:after
+        content: ""
+      &:last-child:after
+        content: ""
+      &:after
+        content: "•"
+        padding: 0 0 0 5px
+
 
 .project-panel
   +flex-direction(column)
@@ -149,23 +239,22 @@ $sidebar-width: 40%
   +transition(all 0.3s ease)
 
 // == Panels =================
-.index-panel-1
+.index-panel-0
   +flex-direction(row-reverse)
   img
     height: 90%
     width: auto
     +align-self(flex-end)
-.index-panel-3
-  img
-    max-width: 65%
 .index-panel-4
+  .project__image-container
+    display: flex
+    align-items: center
   img:first-child
     width: 61%
   img:last-child
     width: 36.25%
 
 // == Media Queries ==========
-// @media screen and (max-width: 986px)
 @media screen and (max-width: 1145px)
   .sidebar
     &__container
@@ -179,7 +268,7 @@ $sidebar-width: 40%
       padding: 15px 70px
   .content-container
     margin: 0
-  .index-panel-1 
+  .index-panel-0
     img
       height: auto !important
       max-width: 100%
@@ -192,11 +281,32 @@ $sidebar-width: 40%
     &__greeting, &__description, &__social-links
       padding-left: 50px
       padding-right: 50px
+  .project
+    &__image-container
+      margin: 0
+    &__details
+      min-height: 120px
+      &-section
+        display: block !important
+      ul
+        margin-bottom: 12px
+        display: block
+      li
+        display: inline-block
+        &:first-child
+          display: block
+        &:first-child:after
+          content: ""
+        &:last-child:after
+          content: ""
+        &:after
+          content: "•"
+          padding: 0 0 0 5px
     // nav
     //   padding: 10px 50px
   .content-panel
     min-height: unset
-  .project-details > div:first-child
+  .project-details
     display: block !important
     ul
       margin-bottom: 12px
